@@ -11,6 +11,12 @@ import {
 
 const networkInterface = createNetworkInterface({ uri: 'http://localhost:4000/graphql' });
 
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    setTimeout(next, 500);
+  },
+}]);
+
 const client = new ApolloClient({
   networkInterface,
 });
